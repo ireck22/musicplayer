@@ -11,7 +11,7 @@ bitmapDir = os.path.join(dirName, 'bitmaps')
 class Frame(wx.Frame):
     
     #----------------------------------------------------------------------
-    def __init__(self, parent, id, title, mplayer):
+    def __init__(self, parent, id, title, mplayer,media_file):
         wx.Frame.__init__(self, parent, id, title)
         self.panel = wx.Panel(self)
         
@@ -20,7 +20,7 @@ class Frame(wx.Frame):
         self.currentVolume = 50
 		
         self.create_menu()
-        self.mpc = mpc.MplayerCtrl(self.panel, -1, mplayer)
+        self.mpc = mpc.MplayerCtrl(self.panel, -1, mplayer, media_file)
         
 		# create sizers
         mainSizer = wx.BoxSizer(wx.VERTICAL)
@@ -183,9 +183,8 @@ class Frame(wx.Frame):
 if __name__ == "__main__":
     import os, sys
     
-    paths = [r'C:\Users\jacky\Desktop\MPlayer-rtm-svn-31170\mplayer.exe',
-             #r'C:\Users\jacky\Desktop\youtube\music\test.mp3'
-            ] 
+    paths = [r'C:\Users\jacky\Desktop\MPlayer-rtm-svn-31170\mplayer.exe'
+            ]
    # paths ='https://www.youtube.com/embed/XObwBsvPd38'
 #r'E:\MPlayer-rtm-svn-31170\mplayer.exe'
     mplayerPath = None
@@ -196,8 +195,8 @@ if __name__ == "__main__":
     if not mplayerPath:
         print "mplayer not found!"
         sys.exit()
-            
+
     app = wx.App(redirect=False)
-    frame = Frame(None, -1, 'Hello MplayerCtrl', mplayerPath)
+    frame = Frame(None, -1, 'Hello MplayerCtrl', mplayerPath,'test2.mkv')
     app.MainLoop()
      
