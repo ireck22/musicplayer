@@ -183,9 +183,10 @@ class Frame(wx.Frame):
 if __name__ == "__main__":
     import os, sys
     
-    #paths = [#r'C:\Users\jacky\Desktop\youtube\video\test2.mkv'
-     #        'https://www.youtube.com/embed/XObwBsvPd38'] 
-    paths ='https://www.youtube.com/embed/XObwBsvPd38'
+    paths = [r'C:\Users\jacky\Desktop\MPlayer-rtm-svn-31170\mplayer.exe',
+             #r'C:\Users\jacky\Desktop\youtube\music\test.mp3'
+            ] 
+   # paths ='https://www.youtube.com/embed/XObwBsvPd38'
 #r'E:\MPlayer-rtm-svn-31170\mplayer.exe'
     mplayerPath = None
     for path in paths:
