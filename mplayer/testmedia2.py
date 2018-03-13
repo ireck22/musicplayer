@@ -1,13 +1,11 @@
-import wx
 import MplayerCtrl as mpc
+import wx
 
 class Frame(wx.Frame):
-    def __init__(self, parent, id, title, mplayer, size=(-1,-1)):
-        wx.Frame.__init__(sself, parent, id, size=size)
+    def __init__(self, parent, id, size=(-1,-1)):
+        wx.Frame.__init__(self, parent, id, size=size)
+        self.mpc = mpc.MplayerCtrl(self, -1, 'C:\Users\jacky\Desktop\MPlayer-rtm-svn-31170\mplayer.exe','love.mkv')
 
-        self.mpc = mpc.MplayerCtrl(self, -1,'C:\Users\jacky\Desktop\MPlayer-rtm-svn-31170\mplayer.exe')
-        
-       
         self.Bind(mpc.EVT_MEDIA_STARTED, self.media_started)
         self.Bind(mpc.EVT_MEDIA_FINISHED, self.media_finished)
         self.Bind(mpc.EVT_PROCESS_STARTED, self.process_started)
@@ -23,7 +21,7 @@ class Frame(wx.Frame):
         print '----------> Media finished'
     def process_started(self, evt):
         print '----------> Process started'
-        self.mpc.Loadfile('test2.mkv')
+        self.mpc.Loadfile(u'testmovie.mpg')
     def process_stopped(self, evt):
         print '----------> Process stopped'
 
@@ -42,5 +40,5 @@ class Frame(wx.Frame):
 
 if __name__ == '__main__':
     app = wx.App()
-    frame = Frame(None, -1)
+    f = Frame(None, -1)
     app.MainLoop()

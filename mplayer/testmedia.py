@@ -1,25 +1,49 @@
 import wx
 import MplayerCtrl as mpc
+import os
+import wx.lib.buttons as buttons
+
 
 class Frame(wx.Frame):
     def __init__(self, parent, id, title, mplayer, media_file):
         wx.Frame.__init__(self, parent, id, title)
-
+        
+        
         self.mpc = mpc.MplayerCtrl(self, -1, mplayer, media_file)
-        self.mpc.Bind(wx.EVT_KEY_DOWN, self.key_down)
+        self.Bind(mpc.EVT_PROCESS_STARTED, self.on_process_started)
+        self.Bind(mpc.EVT_MEDIA_STARTED, self.on_media_started)
+        self.Bind(mpc.EVT_MEDIA_FINISHED, self.on_media_finished)
+        self.Bind(mpc.EVT_PROCESS_STOPPED, self.on_process_stopped)
+        
+        #self.Bind(mpc.EVT_STDERR,self.on_stderr)
         self.Show()
 
-    def key_down(self, evt):
-        k = evt.GetKeyCode()
-        if k in (43, 45) and self.mpc.playing:
-            volume = self.mpc.volume
-            if k == 43:
-                if not volume > 95:
-                    self.mpc.volume += 5
-            elif k == 45:
-                if not volume <= 5:
-                    self.mpc.volume -= 5
-        evt.Skip()
+    def on_process_started(self, evt):
+        print 'Process started'
+    def on_media_started(self, evt):
+        print 'Media started'
+        print 'volume'
+        #self.mpc.SetProperty('volume', 90)
+        ANS_ERROR=PROPERTY_UNAVAILABLE
+        volume = self.mpc.volume
+        stream_pos = self.mpc.stream_pos
+        # now set a property
+        self.mpc.volume = 50
+        self.mpc.time_pos = 20
+        # now de/increase a property
+        self.mpc.volume -= 10
+        self.mpc.time_pos += 5
+
+    def on_media_finished(self, evt):
+        print 'Media finished'
+        self.mpc.Quit()
+    def on_process_stopped(self, evt):
+        print 'Process stopped'
+        os_exit()
+    def on_stderr(self,evt):
+        print 'oh oh some errors:'
+        print '==>', evt.data
+   
 
 
 if __name__ == '__main__':
