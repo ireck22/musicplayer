@@ -28,11 +28,11 @@ key2=key.decode('utf-8')
 
 
 #while text==key2:
-os.system('key.py')		
+os.system('python key.py')		
 	
 pygame.mixer.init()
-#pygame.mixer.music.load("/var/www/html/video3/music/chosesong.mp3")
-pygame.mixer.music.load("D:\py\music\chosesong.mp3")
+pygame.mixer.music.load("/home/pi/musicplayer/music/chosesong.mp3")
+#pygame.mixer.music.load("D:\py\music\chosesong.mp3")
 pygame.mixer.music.play()
 time.sleep(1)
 

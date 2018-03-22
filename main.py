@@ -8,13 +8,13 @@ import time
 import threading
 
 def re1():
-	result=os.popen("webclower3.py").readlines()
+	result=os.popen("python webcrawler3.py").readlines()
 	#print result[40]
 	re2=result[40].split("v=")
 	#print re2[1] #網址截斷測試
 	re3="https://www.youtube.com/embed/"+re2[1]
 	print re3
-	#os.system("vlc "+re3)
+	os.system("vlc "+re3)
 
 def print_time( thre, delay):
 	count = 0
