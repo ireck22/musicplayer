@@ -7,6 +7,8 @@ import pygame
 import time
 import threading
 
+x="ww"
+
 def re1():
 	result=os.popen("python webcrawler3.py").readlines()
 	#print result[40]
