@@ -7,7 +7,7 @@ import pygame
 import time
 import threading
 
-x="ww"
+fp=open("url.txt","w")
 
 def re1():
 	result=os.popen("python webcrawler3.py").readlines()
@@ -15,6 +15,8 @@ def re1():
 	re2=result[40].split("v=")
 	#print re2[1] #網址截斷測試
 	re3="https://www.youtube.com/embed/"+re2[1]
+	fp.write(re3)
+	fp.close()
 	print re3
 	os.system("vlc "+re3)
 
