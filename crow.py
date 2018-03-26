@@ -17,13 +17,13 @@ text = ""
 text = r.recognize_google(audio, language='zh-TW')
 
 #print text
-keyword="切歌"
+keyword="切割"
 keyword2=keyword.decode('utf-8')
 
 
 if text==keyword2:
   os.system("sudo killall -9 vlc")
-  os.system("sudo python main.py")
+  os.system("python main.py")
 
 
 

@@ -11,24 +11,19 @@ import pyaudio
 import pygame
 import time
 
+key="ok"
+key2=key.decode('utf-8')
+txt=os.popen('python key.py').readlines()
+while txt[0]==key2:
+	break
+
 """
-r=speech_recognition.Recognizer()
-with speech_recognition.Microphone() as source:
-	audio=r.listen(source)
-	#audio=r.record(source)
-text = ""
-text = r.recognize_google(audio, language='zh-TW')
-
-#result2=os.popen("key.py").read()
-result2=os.popen("key.py",'r')
-print result2
-key="ok音樂"
-key2=key.decode('utf-8')	
-"""
-
-
-#while text==key2:
-os.system('python key.py')		
+while True:
+	txt=os.popen('python key.py').readlines()
+	print txt[0] 
+	if txt[0]==key2:
+	  break
+"""	
 	
 pygame.mixer.init()
 pygame.mixer.music.load("/home/pi/musicplayer/music/chosesong.mp3")

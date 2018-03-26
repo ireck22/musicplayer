@@ -22,13 +22,19 @@ with speech_recognition.Microphone() as source:
 text = ""
 text = r.recognize_google(audio, language='zh-TW')
 
-#print text
+text2=text.encode('utf_8')
+print text2
+
+
+"""
 key="ok音樂"
 key2=key.decode('utf-8')
 
 while text == key2:
 	#print "yes"
 	break
+
+"""
 	
 """	
 while text == key2 :
