@@ -8,7 +8,7 @@ import time
 import threading
 import speech_recognition
 
-
+#def voice():
 r=speech_recognition.Recognizer()
 with speech_recognition.Microphone() as source:
 	audio=r.listen(source)
@@ -21,9 +21,9 @@ keyword="切割"
 keyword2=keyword.decode('utf-8')
 
 
-if text==keyword2:
-  os.system("sudo killall -9 vlc")
-  os.system("python main.py")
+while text==keyword2:
+  	os.system("sudo killall -9 vlc")
+  	os.system("python main.py")
 
 
 

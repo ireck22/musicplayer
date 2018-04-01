@@ -6,8 +6,10 @@ import pyaudio
 import pygame
 import time
 import threading
+import crow
 
 fp=open("url.txt","w")
+#crow.voice()
 
 def re1():
 	result=os.popen("python webcrawler3.py").readlines()
@@ -19,34 +21,31 @@ def re1():
 	fp.close()
 	print re3
 	os.system("vlc "+re3)
-
+"""
 def print_time( thre, delay):
 	count = 0
 	for i in range (1,thre):  
 		time.sleep(delay)
 		count += i
 		print "%s: %d" % ( thre, count )	
+"""
 
+def cv():
+	crow.voice()
 
-thread1=re1()
-thread2=print_time(6, 2)
+#thread1=re1()
+#thread2=crow.voice
 
-#try:
-re.search(cookieKey +'\w+',mf)
-thread1.start()
-thread2.start()
-#except:
-  # print "Error: unable to start thread"
-
-
-threads.append(thread1)
-threads.append(thread2)
-
-# 等待所有线程完成
-for t in threads:
-    t.join()
-print "Exiting Main Thread"
-
-
+def main():
+	added_thread=threading.Thread(target=re1,name='re')
+	Thread2=threading.Thread(target=cv,name='cv')
+	added_thread.start()
+	added_thread.join()
+	Thread2.start()
+	Thread2.join()
+	
+	print 'all done\n'
+if __name__=='__main__':
+	main()
 
 
