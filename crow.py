@@ -24,6 +24,7 @@ keyword2=keyword.decode('utf-8')
 while text==keyword2:
   	os.system("sudo killall -9 vlc")
   	os.system("python main.py")
+		
 
-
+#voice()
 

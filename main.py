@@ -6,7 +6,6 @@ import pyaudio
 import pygame
 import time
 import threading
-import crow
 
 fp=open("url.txt","w")
 #crow.voice()
@@ -38,11 +37,11 @@ def cv():
 
 def main():
 	added_thread=threading.Thread(target=re1,name='re')
-	Thread2=threading.Thread(target=cv,name='cv')
+	#Thread2=threading.Thread(target=cv,name='cv')
 	added_thread.start()
-	added_thread.join()
-	Thread2.start()
-	Thread2.join()
+	#added_thread.join()
+	#Thread2.start()
+	#Thread2.join()
 	
 	print 'all done\n'
 if __name__=='__main__':
