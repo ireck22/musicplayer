@@ -13,49 +13,26 @@ from threading import Timer
 
 
 
-
+def start():
 	 
-r=speech_recognition.Recognizer()
-with speech_recognition.Microphone() as source:
-	audio=r.listen(source)
-	#audio=r.record(source)
-text = ""
-text = r.recognize_google(audio, language='zh-TW')
-
-text2=text.encode('utf_8')
-print text2
-
-
-"""
-key="ok音樂"
-key2=key.decode('utf-8')
-
-while text == key2:
-	#print "yes"
-	break
-
-"""
-	
-"""	
-while text == key2 :
-	#print "111"
-
-	pygame.mixer.init()
-	#pygame.mixer.music.load("/var/www/html/video3/music/chosesong.mp3")
-	pygame.mixer.music.load("D:\py\music\chosesong.mp3")
-	pygame.mixer.music.play()
-	time.sleep(1)
-		
-	
-
+	r=speech_recognition.Recognizer()
 	with speech_recognition.Microphone() as source:
 		audio=r.listen(source)
 		#audio=r.record(source)
 	text = ""
 	text = r.recognize_google(audio, language='zh-TW')
-		#text = r.recognize_google(audio, language='en-US')
 
-	time.sleep(6)	
+	#text2=text.encode('utf_8')
 	print text
 
-"""
+
+	key="ok音樂"
+	key2=key.decode('utf-8')
+
+	while text == key2:
+		sys.exit()
+	
+	start()
+
+start()	
+

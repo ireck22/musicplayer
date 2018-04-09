@@ -11,12 +11,9 @@ import pyaudio
 import pygame
 import time
 
-key="ok"
-key2=key.decode('utf-8')
-txt=os.popen('python key.py').readlines()
-while txt[0]==key2:
-	break
-
+#key="ok"
+#key2=key.decode('utf-8')
+#txt=os.popen('python key.py').readlines()
 """
 while True:
 	txt=os.popen('python key.py').readlines()
@@ -24,6 +21,8 @@ while True:
 	if txt[0]==key2:
 	  break
 """	
+
+os.system('python key.py')
 	
 pygame.mixer.init()
 pygame.mixer.music.load("/home/pi/musicplayer/music/chosesong.mp3")
