@@ -8,6 +8,8 @@ import time
 import threading
 import speech_recognition
 
+
+"""
 def voice():
 	r=speech_recognition.Recognizer()
 	with speech_recognition.Microphone() as source:
@@ -25,11 +27,28 @@ def voice():
 
 
 	while text==keyword2:
- 		os.system("sudo killall -9 vlc")
+ 		os.system("sudo killall -9 omxplayer.bin")
   		#os.system("python main.py")
 		time.sleep(5)
 		voice()
 	voice()
+
+voice()
+
+"""
+
+def voice():
+	keyword=("切割").decode('utf-8')
+	text = ""
+	while text != keyword:
+		r=speech_recognition.Recognizer()
+		with speech_recognition.Microphone() as source:
+			audio=r.listen(source)
+			#audio=r.record(source)
+		text = r.recognize_google(audio, language='zh-TW')
+		time.sleep(5)
+
+	os.system("sudo killall -9 omxplayer.bin")
 
 voice()
 

@@ -6,6 +6,10 @@ import pyaudio
 import pygame
 import time
 import threading
+import Queue
+import crow
+
+q=Queue.Queue()
 
 fp=open("url.txt","w")
 #crow.voice()
@@ -19,31 +23,28 @@ def re1():
 	fp.write(re3)
 	fp.close()
 	print re3
-	os.system("vlc "+re3)
-"""
-def print_time( thre, delay):
-	count = 0
-	for i in range (1,thre):  
-		time.sleep(delay)
-		count += i
-		print "%s: %d" % ( thre, count )	
-"""
+	#os.system("vlc "+re3)
+	q.put(re3)
+
+def player():
+	res=q.get()
+	os.system("omxplayer `youtube-dl -g -f 22 "+res+"`")	
+	print res
 
 def cv():
+	print 333
 	crow.voice()
-
-#thread1=re1()
-#thread2=crow.voice
 
 def main():
 	added_thread=threading.Thread(target=re1,name='re')
-	#Thread2=threading.Thread(target=cv,name='cv')
+	Thread2=threading.Thread(target=player,name='player')
+	Thread3=threading.Thread(target=cv,name='cv')
 	added_thread.start()
-	#added_thread.join()
-	#Thread2.start()
+	added_thread.join()
+	Thread2.start()
 	#Thread2.join()
-	
-	print 'all done\n'
+	Thread3.start()	
+
 if __name__=='__main__':
 	main()
 
