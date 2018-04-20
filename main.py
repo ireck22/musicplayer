@@ -27,13 +27,21 @@ def re1():
 	q.put(re3)
 
 def player():
+	global lock
+	lock=threading.Lock()
+	lock.acquire()
 	res=q.get()
 	os.system("omxplayer `youtube-dl -g -f 22 "+res+"`")	
 	print res
+	lock.release()	
 
 def cv():
-	print 333
+	global lock
+	lock=threading.Lock()
+	lock.acquire()
+	time.sleep(5)
 	crow.voice()
+	lock.release()
 
 def main():
 	added_thread=threading.Thread(target=re1,name='re')
