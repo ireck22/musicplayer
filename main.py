@@ -37,11 +37,12 @@ def player():
 
 def cv():
 	global lock
-	lock=threading.Lock()
-	lock.acquire()
+	lock2=threading.Lock()
+	lock2.acquire()
 	time.sleep(5)
+	print "22"
 	crow.voice()
-	lock.release()
+	lock2.release()
 
 def main():
 	added_thread=threading.Thread(target=re1,name='re')
