@@ -8,11 +8,12 @@ import time
 import threading
 import Queue
 import crow
+import monitor
 
 q=Queue.Queue()
 
-fp=open("url.txt","w")
-#crow.voice()
+#fp=open("url.txt","w")
+
 
 def re1():
 	result=os.popen("python webcrawler3.py").readlines()
@@ -20,10 +21,7 @@ def re1():
 	re2=result[40].split("v=")
 	#print re2[1] #網址截斷測試
 	re3="https://www.youtube.com/embed/"+re2[1]
-	fp.write(re3)
-	fp.close()
 	print re3
-	#os.system("vlc "+re3)
 	q.put(re3)
 
 def player():
@@ -33,8 +31,9 @@ def player():
 	res=q.get()
 	os.system("omxplayer `youtube-dl -g -f 22 "+res+"`")	
 	print res
+	main()
 	lock.release()	
-
+	
 def cv():
 	global lock
 	lock2=threading.Lock()
@@ -43,16 +42,20 @@ def cv():
 	print "22"
 	crow.voice()
 	lock2.release()
+def mo():
+	monitor.mon()
 
 def main():
 	added_thread=threading.Thread(target=re1,name='re')
 	Thread2=threading.Thread(target=player,name='player')
 	Thread3=threading.Thread(target=cv,name='cv')
+	Thread4=threading.Thread(target=mo,name='mo')
 	added_thread.start()
 	added_thread.join()
 	Thread2.start()
 	#Thread2.join()
 	Thread3.start()	
+	Thread4.start()	
 
 if __name__=='__main__':
 	main()
