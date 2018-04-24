@@ -12,7 +12,7 @@ import speech_recognition
 def voice():
 	keyword=("切割").decode('utf-8')
 	text = ""
-	time.sleep(5)
+	time.sleep(20)
 	while text != keyword:
 		r=speech_recognition.Recognizer()
 		with speech_recognition.Microphone() as source:

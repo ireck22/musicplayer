@@ -10,6 +10,7 @@ import speech_recognition
 import sys 
 
 def voice():
+	time.sleep(5)
 	r=speech_recognition.Recognizer()
 	with speech_recognition.Microphone() as source:
 		audio=r.listen(source)
@@ -26,4 +27,4 @@ def voice():
   		#os.system("python main.py")
 		sys.exit()
 	voice()
-voice()
+#voice()

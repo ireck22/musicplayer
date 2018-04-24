@@ -7,12 +7,13 @@ import pygame
 import time
 import threading
 import Queue
-import crow2
+import crow
 import monitor
-import song
 
 q=Queue.Queue()
+
 #fp=open("url.txt","w")
+
 
 def re1():
 	result=os.popen("python webcrawler3.py").readlines()
@@ -22,7 +23,6 @@ def re1():
 	re3="https://www.youtube.com/embed/"+re2[1]
 	print re3
 	q.put(re3)
-	song.found()	
 
 def player():
 	global lock
@@ -40,7 +40,8 @@ def cv():
 	lock2.acquire()
 	time.sleep(5)
 	print "22"
-	crow2.voice()
+	crow.voice()
+	main()
 	lock2.release()
 def mo():
 	monitor.mon()
