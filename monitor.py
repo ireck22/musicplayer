@@ -15,9 +15,8 @@ def mon():
 	while result !=[]:
 		result=os.popen("pidof omxplayer.bin").readlines()
 		#print result
-
 	print "ok"
-
+	#os.system("sudo kill -9"+result2)
 
 
 

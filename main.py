@@ -7,7 +7,7 @@ import pygame
 import time
 import threading
 import Queue
-import crow2
+import crow
 import monitor
 import song
 
@@ -39,8 +39,8 @@ def cv():
 	lock2=threading.Lock()
 	lock2.acquire()
 	time.sleep(5)
-	print "22"
-	crow2.voice()
+	print "start"
+	crow.voice()
 	lock2.release()
 def mo():
 	monitor.mon()

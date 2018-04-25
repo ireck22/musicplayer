@@ -20,17 +20,23 @@ def start():
 		audio=r.listen(source)
 		#audio=r.record(source)
 	text = ""
-	text = r.recognize_google(audio, language='zh-TW')
+	try:
+		text = r.recognize_google(audio, language='zh-TW')
 
-	#text2=text.encode('utf_8')
-	print text
+		#text2=text.encode('utf_8')
+		print text
+	
 
+		key="ok音樂"
+		key2=key.decode('utf-8')
 
-	key="ok音樂"
-	key2=key.decode('utf-8')
-
-	while text == key2:
-		sys.exit()
+		while text == key2:
+			sys.exit()
+	
+	except speech_recognition.UnknownValueError:
+    		print("Google Speech Recognition could not understand audio")
+	except speech_recognition.RequestError as e:
+    		print("Could not request results from Google Speech Recognition service; {0}".format(e))
 	
 	start()
 
