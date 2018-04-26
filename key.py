@@ -14,7 +14,11 @@ from threading import Timer
 
 
 def start():
-	 
+	
+	#pygame.mixer.init()
+        #pygame.mixer.music.load("/home/pi/musicplayer/music/voiceerror.mp3")
+        #pygame.mixer.music.play()
+        #time.sleep(3)	 
 	r=speech_recognition.Recognizer()
 	with speech_recognition.Microphone() as source:
 		audio=r.listen(source)

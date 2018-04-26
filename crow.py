@@ -22,7 +22,8 @@ def voice():
 			text = r.recognize_google(audio, language='zh-TW')
 			print text
 			time.sleep(1)
-			again.error()
+			if text!=keyword:
+				again.error()
 		except speech_recognition.UnknownValueError:
    			 print("Google Speech Recognition could not understand audio")
 		except speech_recognition.RequestError as e:

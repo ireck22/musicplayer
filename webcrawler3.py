@@ -38,8 +38,13 @@ with speech_recognition.Microphone() as source:
 	audio=r.listen(source)
 	#audio=r.record(source)
 text = ""
-text = r.recognize_google(audio, language='zh-TW')
-#text = r.recognize_google(audio, language='en-US')
+try:	
+	text = r.recognize_google(audio, language='zh-TW')
+
+except speech_recognition.UnknownValueError:
+    print("Google Speech Recognition could not understand audio")
+except speech_recognition.RequestError as e:
+    print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
 			
 time.sleep(2)

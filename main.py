@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import subprocess
+import subprocess as subp
 import os
 import pyaudio
 import pygame
@@ -12,12 +12,19 @@ import monitor
 import song
 
 q=Queue.Queue()
+q2=Queue.Queue()
 #fp=open("url.txt","w")
 
 def re1():
-	result=os.popen("python webcrawler3.py").readlines()
-	#print result[40]
-	re2=result[40].split("v=")
+	#result=os.popen("python webcrawler3.py").read()
+	#res2=[]
+	#res2.append(result)
+	#res3=res2[0].split('!')
+	#print res3[41]  #為了除復跑而用read()
+	result = subp.Popen(["python", "webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]
+	result2=result.split('!')
+	#print result2[41]  #supprocess的
+	re2=result2[41].split("v=")
 	#print re2[1] #網址截斷測試
 	re3="https://www.youtube.com/embed/"+re2[1]
 	print re3
@@ -38,12 +45,24 @@ def cv():
 	global lock
 	lock2=threading.Lock()
 	lock2.acquire()
-	time.sleep(5)
 	print "start"
+	rescro=os.getpid()
+	q2.put(rescro)
 	crow.voice()
 	lock2.release()
+
 def mo():
-	monitor.mon()
+	time.sleep(17)
+	result=""
+	while result !=[]:
+		result=os.popen("pidof omxplayer.bin").readlines()
+		print result
+	print "ok"
+	result2=q2.get()
+	print result2
+	result3=str(result2)
+	os.system("sudo kill -9 "+result3)
+
 
 def main():
 	added_thread=threading.Thread(target=re1,name='re')
