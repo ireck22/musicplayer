@@ -28,6 +28,7 @@ def voice():
    			 print("Google Speech Recognition could not understand audio")
 		except speech_recognition.RequestError as e:
     			print("Could not request results from Google Speech Recognition service; {0}".format(e))		
+	
 	os.system("sudo killall -9 omxplayer.bin")
 
 #voice()

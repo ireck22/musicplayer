@@ -10,17 +10,7 @@ import speech_recognition
 import pyaudio
 import pygame
 import time
-
-#key="ok"
-#key2=key.decode('utf-8')
-#txt=os.popen('python key.py').readlines()
-"""
-while True:
-	txt=os.popen('python key.py').readlines()
-	print txt[0] 
-	if txt[0]==key2:
-	  break
-"""	
+import song	
 
 os.system('python key.py')
 	
@@ -46,7 +36,7 @@ except speech_recognition.UnknownValueError:
 except speech_recognition.RequestError as e:
     print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-			
+resusp=[]			
 time.sleep(2)
 r1=requests.get('https://www.youtube.com/results?search_query='+text)
 soup=BeautifulSoup(r1.text,'lxml')
@@ -59,8 +49,15 @@ title=soup.find_all('div') #找所有的div區塊
 for d in title:
 	if d.find('a'):        #再從div找a裡面的href  
 		result='!'+d.find('a')['href']
-		print result
-	
+		#print result
+		resusp.append(result)		
 
-
+re2=resusp[41]
+#print re2
+re3=re2.split('v=')
+#print re3[1]
+re4="https://www.youtube.com/embed/"+re3[1]
+print re4
+#song.found()
+#os.system("omxplayer `youtube-dl -g -f 22 "+re4+"`")
 

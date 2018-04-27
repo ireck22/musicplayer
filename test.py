@@ -11,8 +11,9 @@ import time
 
 proc = subp.Popen(["python", "webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]
  
-qwe=proc.split('!')
-print qwe[41]
+print proc
+#qwe=proc.split('!')
+#print qwe[41]
 
 
 """
