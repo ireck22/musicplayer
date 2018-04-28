@@ -98,6 +98,7 @@ def main():
 	Thread3.start()	
 	Thread4.start()	
 	
+	threads=[]	
 	#threads.append(added_thread)
 	threads.append(Thread2)
 	threads.append(Thread3)	
