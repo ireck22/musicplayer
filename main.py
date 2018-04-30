@@ -47,22 +47,23 @@ def re1():
 	song.found()	
 
 def player():
+	"""
 	global lock
 	lock=threading.Lock()
 	lock.acquire()
+	"""
 	res=q.get()
-	#sys.excepthook = excepthook
-
 	os.system("omxplayer `youtube-dl -g -f 22 "+res+"`")	
 	print res
-	lock.release()
-	#main()	
+	main()
+	#lock.release()
+		
 	
 def cv():
 	global lock
         lock2=threading.Lock()
 	lock2.acquire()
-	#time.sleep(31)	
+	time.sleep(17)	
 	print "start"
 	rescro=os.getpid()
 	q2.put(rescro)
@@ -72,10 +73,11 @@ def cv():
 def mo():
 	#time.sleep(31) #三線呈
 	time.sleep(17)  
+	"""
 	global lock
         lock3=threading.Lock()
         lock3.acquire()
-
+	"""
 	result=""
 	while result !=[]:
 		result=os.popen("pidof omxplayer.bin").readlines()
@@ -85,27 +87,30 @@ def mo():
 	print result2
 	result3=str(result2)
 	os.system("sudo kill -9 "+result3)
-	lock3.release()
+	#lock3.release()
 
 def main():
-	added_thread=threading.Thread(target=re1,name='re')
+	main_thread=threading.Thread(target=re1,name='re')
 	Thread2=threading.Thread(target=player,name='player')
 	Thread3=threading.Thread(target=cv,name='cv')
 	Thread4=threading.Thread(target=mo,name='mo')
-	added_thread.start()
-	added_thread.join()
+	main_thread.start()
+	main_thread.join()
 	Thread2.start()
 	Thread3.start()	
-	Thread4.start()	
+	#Thread4.start()	
 	
+	"""
 	threads=[]	
 	#threads.append(added_thread)
 	threads.append(Thread2)
 	threads.append(Thread3)	
-	threads.append(Thread4)
-	for s in threads:
-		s.join()
-	main()
+	#threads.append(Thread4)
+	"""
+
+	while Thread2.is_alive() or  Thread3.is_alive() or Thread4.is_alive():
+		time.sleep(1) 
+	#main()
 
 if __name__=='__main__':
 	main()
