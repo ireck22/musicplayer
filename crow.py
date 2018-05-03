@@ -14,6 +14,12 @@ def voice():
 	text = ""
 	#time.sleep()
 	while text != keyword:
+		
+		result=os.popen("pidof omxplayer.bin").readlines()
+                print result
+                if result==[]:
+                        sys.exit()
+
 		r=speech_recognition.Recognizer()
 		with speech_recognition.Microphone() as source:
 			audio=r.listen(source)
@@ -22,6 +28,8 @@ def voice():
 			text = r.recognize_google(audio, language='zh-TW')
 			print text
 			time.sleep(1)
+			if text=="":
+				print "null"
 			if text!=keyword:
 				again.error()
 		except speech_recognition.UnknownValueError:
@@ -29,11 +37,7 @@ def voice():
 		except speech_recognition.RequestError as e:
     			print("Could not request results from Google Speech Recognition service; {0}".format(e))		
 		
-		result=os.popen("pidof omxplayer.bin").readlines()
-		print result
-		if result==[]:
-			sys.exit()		
-	
+		
 	os.system("sudo killall -9 omxplayer.bin")
 
 #voice()

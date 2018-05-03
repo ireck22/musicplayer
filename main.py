@@ -12,13 +12,13 @@ import monitor
 import song
 import sys
 
-"""
+
 STDERR = sys.stderr
 def excepthook(*args):
     print >> STDERR, 'caught'
     print >> STDERR, args
-"""
-#sys.excepthook = excepthook
+
+sys.excepthook = excepthook
 
 q=Queue.Queue()
 q2=Queue.Queue()
@@ -30,18 +30,8 @@ def re1():
 	print "ready"
 	main()
 	"""
-	#result=os.popen("python webcrawler3.py").read()
-	#res2=[]
-	#res2.append(result)
-	#res3=res2[0].split('!')
-	#print res3[41]  #為了除復跑而用read()
-	result = subp.Popen(["python", "webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]
 	
-	#result2=result.split('!')
-	#print result2[41]  #supprocess的
-	#re2=result2[41].split("v=")
-	#print re2[1] #網址截斷測試
-	#re3="https://www.youtube.com/embed/"+re2[1]
+	result = subp.Popen(["python", "webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]	
 	print result
 	q.put(result)
 	song.found()	
@@ -55,7 +45,7 @@ def player():
 	res=q.get()
 	os.system("omxplayer `youtube-dl -g -f 22 "+res+"`")	
 	print res
-	main()
+	#main()
 	#lock.release()
 		
 	
@@ -67,6 +57,7 @@ def cv():
 	print "start"
 	rescro=os.getpid()
 	q2.put(rescro)
+	#os.system("python crow.py")
 	crow.voice()
 	lock2.release()
 
@@ -85,8 +76,8 @@ def mo():
 	print "ok"
 	result2=q2.get()
 	print result2
-	result3=str(result2)
-	os.system("sudo kill -9 "+result3)
+	#result3=str(result2)
+	#os.system("sudo kill -9 "+result3)
 	#lock3.release()
 
 def main():
@@ -98,7 +89,7 @@ def main():
 	main_thread.join()
 	Thread2.start()
 	Thread3.start()	
-	#Thread4.start()	
+	Thread4.start()	
 	
 	"""
 	threads=[]	
@@ -109,8 +100,9 @@ def main():
 	"""
 
 	while Thread2.is_alive() or  Thread3.is_alive() or Thread4.is_alive():
-		time.sleep(1) 
-	#main()
+		time.sleep(2) 
+	print "yooo" #除錯用
+	main()
 
 if __name__=='__main__':
 	main()
