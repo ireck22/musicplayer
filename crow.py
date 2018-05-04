@@ -7,7 +7,7 @@ import pygame
 import time
 import threading
 import speech_recognition
-import again
+import song
 import sys
 def voice():
 	keyword=("切割").decode('utf-8')
@@ -31,7 +31,7 @@ def voice():
 			if text=="":
 				print "null"
 			if text!=keyword:
-				again.error()
+				song.error()
 		except speech_recognition.UnknownValueError:
    			 print("Google Speech Recognition could not understand audio")
 		except speech_recognition.RequestError as e:

@@ -8,7 +8,6 @@ import time
 import threading
 import Queue
 import crow
-import monitor
 import song
 import sys
 
@@ -56,41 +55,19 @@ def cv():
 	crow.voice()
 	lock2.release()
 
-def mo():
-	#time.sleep(31) #三線呈
-	time.sleep(17)  
-	"""
-	global lock
-        lock3=threading.Lock()
-        lock3.acquire()
-	"""
-	result=""
-	while result !=[]:
-		result=os.popen("pidof omxplayer.bin").readlines()
-		#print result
-	print "ok"
-	result2=q2.get()
-	print result2
-	#result3=str(result2)
-	#os.system("sudo kill -9 "+result3)
-	#lock3.release()
 
 def main():
 	while True:
 		main_thread=threading.Thread(target=re1,name='re')
 		Thread2=threading.Thread(target=player,name='player')
 		Thread3=threading.Thread(target=cv,name='cv')
-		Thread4=threading.Thread(target=mo,name='mo')
 		main_thread.start()
 		main_thread.join()
 		Thread2.start()
-		Thread3.start()	
-		Thread4.start()	
-	
+		Thread3.start()
 
-
-		while Thread2.is_alive() or  Thread3.is_alive() or Thread4.is_alive():
-			time.sleep(2) 
+		while Thread2.is_alive() or  Thread3.is_alive():
+			time.sleep(2)
 		print "yooo" #除錯用
 
 if __name__=='__main__':

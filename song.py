@@ -14,3 +14,13 @@ def found():
 	time.sleep(2)
 
 
+
+def error():
+        pygame.mixer.init()
+        pygame.mixer.music.load("/home/pi/musicplayer/music/voiceerror.mp3")
+        pygame.mixer.music.play()
+        time.sleep(3)
+
+
+
+
