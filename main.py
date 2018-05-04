@@ -13,12 +13,7 @@ import song
 import sys
 
 
-STDERR = sys.stderr
-def excepthook(*args):
-    print >> STDERR, 'caught'
-    print >> STDERR, args
 
-sys.excepthook = excepthook
 
 q=Queue.Queue()
 q2=Queue.Queue()
@@ -81,28 +76,22 @@ def mo():
 	#lock3.release()
 
 def main():
-	main_thread=threading.Thread(target=re1,name='re')
-	Thread2=threading.Thread(target=player,name='player')
-	Thread3=threading.Thread(target=cv,name='cv')
-	Thread4=threading.Thread(target=mo,name='mo')
-	main_thread.start()
-	main_thread.join()
-	Thread2.start()
-	Thread3.start()	
-	Thread4.start()	
+	while True:
+		main_thread=threading.Thread(target=re1,name='re')
+		Thread2=threading.Thread(target=player,name='player')
+		Thread3=threading.Thread(target=cv,name='cv')
+		Thread4=threading.Thread(target=mo,name='mo')
+		main_thread.start()
+		main_thread.join()
+		Thread2.start()
+		Thread3.start()	
+		Thread4.start()	
 	
-	"""
-	threads=[]	
-	#threads.append(added_thread)
-	threads.append(Thread2)
-	threads.append(Thread3)	
-	#threads.append(Thread4)
-	"""
 
-	while Thread2.is_alive() or  Thread3.is_alive() or Thread4.is_alive():
-		time.sleep(2) 
-	print "yooo" #除錯用
-	main()
+
+		while Thread2.is_alive() or  Thread3.is_alive() or Thread4.is_alive():
+			time.sleep(2) 
+		print "yooo" #除錯用
 
 if __name__=='__main__':
 	main()
