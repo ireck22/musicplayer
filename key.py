@@ -10,7 +10,7 @@ import pygame
 import wave
 from datetime import datetime
 from threading import Timer
-
+import song
 
 
 def start():
@@ -31,6 +31,7 @@ def start():
 			key2=key.decode('utf-8')
 
 			while text == key2:
+				#song.found()
 				sys.exit()
 	
 		except speech_recognition.UnknownValueError:

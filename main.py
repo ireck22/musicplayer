@@ -48,9 +48,9 @@ def cv():
         lock2=threading.Lock()
 	lock2.acquire()
 	time.sleep(17)	
-	print "start"
-	rescro=os.getpid()
-	q2.put(rescro)
+	#print "start"
+	#rescro=os.getpid()
+	#q2.put(rescro)
 	#os.system("python crow.py")
 	crow.voice()
 	lock2.release()
