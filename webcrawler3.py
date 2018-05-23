@@ -12,13 +12,13 @@ import pygame
 import time
 import song	
 
-os.system('python key.py')
+os.system('python /home/pi/musicplayer/key.py')
 	
 pygame.mixer.init()
 pygame.mixer.music.load("/home/pi/musicplayer/music/chosesong.mp3")
 #pygame.mixer.music.load("D:\py\music\chosesong.mp3")
 pygame.mixer.music.play()
-time.sleep(1)
+time.sleep(0.5)
 
 
 

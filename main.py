@@ -20,12 +20,12 @@ q2=Queue.Queue()
 
 def re1():
 	"""
-	os.system("python webcrawler3.py")
+	os.system("python /home/pi/musicplayer/webcrawler3.py")
 	print "ready"
 	main()
 	"""
 	
-	result = subp.Popen(["python", "webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]	
+	result = subp.Popen(["python", "/home/pi/musicplayer/webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]	
 	print result
 	q.put(result)
 	song.found()	
@@ -37,7 +37,7 @@ def player():
 	lock.acquire()
 	"""
 	res=q.get()
-	os.system("omxplayer `youtube-dl -g -f 22 "+res+"`")	
+	os.system("omxplayer --vol -1500 `youtube-dl -g -f 22 "+res+"`")	
 	print res
 	#main()
 	#lock.release()

@@ -17,6 +17,7 @@ def start():
 	 while True: 
 		r=speech_recognition.Recognizer()
 		with speech_recognition.Microphone() as source:
+			r.adjust_for_ambient_noise(source)
 			audio=r.listen(source)
 			#audio=r.record(source)
 		text = ""
@@ -31,7 +32,7 @@ def start():
 			key2=key.decode('utf-8')
 
 			while text == key2:
-				#song.found()
+				#song.error()
 				sys.exit()
 	
 		except speech_recognition.UnknownValueError:
