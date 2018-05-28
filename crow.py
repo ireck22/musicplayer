@@ -17,6 +17,7 @@ def voice():
 	while text != keyword:
 		
 		r=speech_recognition.Recognizer()
+		r.energy_threshold = 4000
 		with speech_recognition.Microphone() as source:
 			r.adjust_for_ambient_noise(source,duration=0.5)
 			audio=r.listen(source)

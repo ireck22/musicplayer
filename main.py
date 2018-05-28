@@ -37,7 +37,7 @@ def player():
 	lock.acquire()
 	"""
 	res=q.get()
-	os.system("omxplayer --vol -1500 `youtube-dl -g -f 22 "+res+"`")	
+	os.system("omxplayer --vol -1200 `youtube-dl -g -f 22 "+res+"`")	
 	print res
 	#main()
 	#lock.release()
