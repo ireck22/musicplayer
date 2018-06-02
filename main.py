@@ -27,6 +27,7 @@ def re1():
 	
 	result = subp.Popen(["python", "/home/pi/musicplayer/webcrawler3.py"], stdout=subp.PIPE, stdin=subp.PIPE).communicate()[0]	
 	print result
+	time.sleep(3)
 	q.put(result)
 	song.found()	
 
@@ -37,23 +38,18 @@ def player():
 	lock.acquire()
 	"""
 	res=q.get()
-	os.system("omxplayer --vol -1200 `youtube-dl -g -f 22 "+res+"`")	
+	os.system("omxplayer --vol -1900 `youtube-dl -g -f 22 "+res+"`")	
 	print res
-	#main()
-	#lock.release()
+
 		
 	
 def cv():
-	global lock
-        lock2=threading.Lock()
-	lock2.acquire()
+	#global lock
+        #lock2=threading.Lock()
+	#lock2.acquire()
 	time.sleep(17)	
-	#print "start"
-	#rescro=os.getpid()
-	#q2.put(rescro)
-	#os.system("python crow.py")
 	crow.voice()
-	lock2.release()
+	#lock2.release()
 
 
 def main():
