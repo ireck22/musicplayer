@@ -60,5 +60,5 @@ def voice():
 		"""
 	os.system("sudo killall -9 omxplayer.bin")
 
-voice()
+#voice()
 
