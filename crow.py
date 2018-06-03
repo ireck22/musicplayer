@@ -16,6 +16,11 @@ def voice():
 	
 	while text != keyword:
 		
+		#result=os.popen("pidof omxplayer.bin").readlines()
+		#print result		
+	        #if result==[]:
+		#	sys.exit()
+
 		r=speech_recognition.Recognizer()
 		r.energy_threshold = 4000
 		with speech_recognition.Microphone() as source:
@@ -26,6 +31,9 @@ def voice():
 			text = r.recognize_google(audio, language='zh-TW')
 			print text
 			#time.sleep(1)
+			if text=="":
+				print "ss"
+			
 			if text!=keyword:
 				song.error()
 			result=os.popen("pidof omxplayer.bin").readlines()
@@ -52,5 +60,5 @@ def voice():
 		"""
 	os.system("sudo killall -9 omxplayer.bin")
 
-#voice()
+voice()
 
