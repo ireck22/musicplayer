@@ -15,11 +15,6 @@ def voice():
 	text = ""
 	
 	while text != keyword:
-		
-		#result=os.popen("pidof omxplayer.bin").readlines()
-		#print result		
-	        #if result==[]:
-		#	sys.exit()
 
 		r=speech_recognition.Recognizer()
 		r.energy_threshold = 4000
@@ -52,12 +47,6 @@ def voice():
 			text=""
     			print("Could not request results from Google Speech Recognition service; {0}".format(e))		
 		
-		"""
-		result=os.popen("pidof omxplayer.bin").readlines()
-                print result
-                if result==[]:
-                        sys.exit()
-		"""
 	os.system("sudo killall -9 omxplayer.bin")
 
 #voice()

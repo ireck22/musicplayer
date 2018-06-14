@@ -7,7 +7,7 @@ import pygame
 import time
 import threading
 import Queue
-import crow
+import crow2
 import song
 import sys
 
@@ -32,24 +32,15 @@ def re1():
 	song.found()	
 
 def player():
-	"""
-	global lock
-	lock=threading.Lock()
-	lock.acquire()
-	"""
 	res=q.get()
-	os.system("omxplayer --vol -1900 `youtube-dl -g -f 22 "+res+"`")	
+	os.system("omxplayer --vol -1500 `youtube-dl -g -f 36 "+res+"`")	
 	print res
 
 		
 	
 def cv():
-	#global lock
-        #lock2=threading.Lock()
-	#lock2.acquire()
 	time.sleep(17)	
-	crow.voice()
-	#lock2.release()
+	crow2.voice()
 
 
 def main():
@@ -64,7 +55,7 @@ def main():
 
 		while Thread2.is_alive() or  Thread3.is_alive():
 			time.sleep(2)
-		print "yooo" #除錯用
+		#print "yooo" #除錯用
 
 if __name__=='__main__':
 	main()
